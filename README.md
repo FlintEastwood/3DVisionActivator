@@ -9,3 +9,4 @@ Dependencies:
 Known Bugs:
 - When app is closed with the "X", the Offscreen Thread will stay active in background - Please close with "ESC" key for now!
 - When Nvidia IR emitter goes to sleep mode and the app is started, Win10 will crash with the BSOD "SYSTEM_SERVICE_EXEPTION" "ucx01000.sys" !
+- Sync to Monitor refresh is still not working!
