@@ -1,11 +1,13 @@
 # 3DVisionActivator
 Program to drive the Nvidia 3D Vision Shutter glasses without the Nvidia 3D Vision driver.
+Initially made by "cms": https://www.mtbs3d.com/phpbb/viewtopic.php?p=23830#p23830
+
 Keys:
-F1 - toggles stereo
-F2 - swaps eyes
-F3 - goes to the next refresh rate (or loops to the first)
-F5/Shift-F5 - modifies the convergence
-F6/Shift-F6 - modifies the separation
+- F1 - toggles stereo
+- F2 - swaps eyes
+- F3 - goes to the next refresh rate (or loops to the first)
+- F5/Shift-F5 - modifies the convergence
+- F6/Shift-F6 - modifies the separation
 
 How it works:
 There are two rendering contexts (in separate threads).
