@@ -1,5 +1,18 @@
 # 3DVisionActivator
 Program to drive the Nvidia 3D Vision Shutter glasses without the Nvidia 3D Vision driver.
+Keys:
+F1 - toggles stereo
+F2 - swaps eyes
+F3 - goes to the next refresh rate (or loops to the first)
+F5/Shift-F5 - modifies the convergence
+F6/Shift-F6 - modifies the separation
+
+How it works:
+There are two rendering contexts (in separate threads).
+The offscreen thread is not bound by vsync and continually renders the scene to a set of frame buffer objects (one for each eye).
+The visible context is bound by vsync and has access to these fbos.
+It renders the appropriate eye fbo to the window and toggles the 3dVision's "eye."
+A file named "validRefreshRates.ini" holds a refresh rate per line. The program will initially use the top refresh rate. (You may want to change this)
 
 Dependencies:
 - Visual Studio 2022
