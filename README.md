@@ -8,6 +8,7 @@ Keys:
 - F3 - goes to the next refresh rate (or loops to the first)
 - F5/Shift-F5 - modifies the convergence
 - F6/Shift-F6 - modifies the separation
+- ESC - Close App
 
 How it works:
 There are two rendering contexts (in separate threads).
