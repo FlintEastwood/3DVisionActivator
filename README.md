@@ -24,5 +24,6 @@ Dependencies:
 
 Known Bugs:
 - When app is closed with the "X", the Offscreen Thread will stay active in background - Please close with "ESC" key for now!
-- When Nvidia IR emitter goes to sleep mode and the app is started, Win10 will crash with the BSOD "SYSTEM_SERVICE_EXEPTION" "ucx01000.sys" !
+- When Nvidia IR emitter goes to sleep-mode and the app is started, Win10 will crash with the BSOD "SYSTEM_SERVICE_EXEPTION" "ucx01000.sys" ! (Workaround is to unplug and plug the IR emitter)
+- When the IR emitter is woken up from sleep-mode by another 3D-Vision app (NvStTest.exe for example) and the app is started, it hangs on initializing the IR emitter. (Workaround is to unplug and plug the IR emitter)
 - Sync to Monitor refresh is still not working!
