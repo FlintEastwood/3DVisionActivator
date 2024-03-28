@@ -38,7 +38,8 @@ void App::run()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window.close();
+                //window.close();
+		exit(0);
 
             if (event.type == sf::Event::Resized)
                 resize(event.size.width, event.size.height);
