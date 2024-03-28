@@ -147,6 +147,8 @@ void NvidiaShutterGlasses::refresh()
 	char readBuffer[7];
 
 	writeToPipe(pipe0, sequence, 4);
+	// Here start the problems with the sleep mode of the IR emitter !!!
+	// readFromPipe fails after sleep mode
 	readFromPipe(readPipe, readBuffer, 7);
 	writeToPipe(pipe0, sequence+1, 28);
 	writeToPipe(pipe0, sequence+8, 6);
