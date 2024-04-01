@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <vector>
 #include "shutterGlasses.h"
+#include <iostream>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -15,13 +16,23 @@ public:
 	~NvidiaShutterGlasses();
 
 	void toggleEyes(int offset);
-	void nextRefreshRate();
+	void nextProfile();
+	void refresh();
+	float x_offset;
+	float y_offset;
+	float w_offset;
 
 private:
-	void refresh();
+	//void refresh();
 
-	std::vector<int> validRefreshRates;
-	int currentRefreshRate;
+	std::vector<std::string> MonitorID;
+	std::vector<std::string> EDID_ID;
+	std::vector<float> validRefreshRates;
+	std::vector<float> valid_x_us;
+	std::vector<float> valid_y_us;
+	std::vector<float> valid_z_us;
+	std::vector<float> valid_w_us;
+	int currentProfile;
 	HANDLE pipe0, pipe1;
 };
 

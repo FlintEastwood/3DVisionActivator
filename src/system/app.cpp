@@ -12,7 +12,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 App::App(const sf::VideoMode& videoMode, const std::string& title)
-	: window(videoMode, title, sf::Style::Close)
+	: window(videoMode, title, sf::Style::None)                     //sf::Style::Close
     , fov(45.0f)
     , nearZ(0.1f)
     , farZ(100.0f)
