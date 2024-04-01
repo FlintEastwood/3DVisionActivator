@@ -8,8 +8,10 @@
 SharedShutterState::SharedShutterState(int width, int height)
 	: leftFbo(width, height)
 	, rightFbo(width, height)
-	, separation(0.12f)
+	//, separation(0.12f)
+	, separation(0.05f)
 	, convergence(1.47f)
+	//, convergence(0.0f)
 	, stereo(true)
 {
 }

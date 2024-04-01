@@ -35,7 +35,7 @@ MainApp::MainApp(const sf::VideoMode& videoMode, const std::string& title)
 
 void MainApp::processEvent(sf::Event event)
 {
-    if (event.type == sf::Event::KeyPressed)
+    if (event.type == sf::Event::KeyPressed)			//works only when focus on app
     {
         if (event.key.code == sf::Keyboard::Escape)
 			exit(0);
@@ -51,7 +51,14 @@ void MainApp::processEvent(sf::Event event)
 			flipEyes = !flipEyes;
 
 		if (event.key.code == sf::Keyboard::F3)
-			shutterGlasses.nextRefreshRate();
+			shutterGlasses.nextProfile();
+
+		if (event.key.code == sf::Keyboard::X) { shutterGlasses.x_offset += 1.0f; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::S) { shutterGlasses.x_offset -= 1.0f; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::Y) { shutterGlasses.y_offset += 1.0f; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::A) { shutterGlasses.y_offset -= 1.0f; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::W) { shutterGlasses.w_offset += 1.0f; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::Q) { shutterGlasses.w_offset -= 1.0f; shutterGlasses.refresh(); }
 
 		return;
     }
@@ -62,18 +69,27 @@ void MainApp::processEvent(sf::Event event)
 void MainApp::update(float dt, const sf::Keyboard& input)
 {
 	sharedShutterState.lock();
-
+	// works even if focus is not on app
 	if (input.isKeyPressed(sf::Keyboard::LShift) || input.isKeyPressed(sf::Keyboard::RShift))
 	{
-		if (input.isKeyPressed(sf::Keyboard::F5))	sharedShutterState.convergence -= 0.01f;
-		if (input.isKeyPressed(sf::Keyboard::F6))	sharedShutterState.separation -= 0.01f;
+		if (input.isKeyPressed(sf::Keyboard::F5))	sharedShutterState.convergence += 0.01f;
+		if (input.isKeyPressed(sf::Keyboard::F6))	sharedShutterState.convergence -= 0.01f;
 	}
 	else
 	{
-		if (input.isKeyPressed(sf::Keyboard::F5))	sharedShutterState.convergence += 0.01f;
-		if (input.isKeyPressed(sf::Keyboard::F6))	sharedShutterState.separation += 0.01f;
+		if (input.isKeyPressed(sf::Keyboard::F5))	sharedShutterState.separation += 0.01f;
+		if (input.isKeyPressed(sf::Keyboard::F6))	sharedShutterState.separation -= 0.01f;
 	}
-
+	if (sharedShutterState.convergence < 0.0f) sharedShutterState.convergence = 0.0f;
+	if (sharedShutterState.separation < 0.0f) sharedShutterState.separation = 0.0f;
+	/*
+	if (input.isKeyPressed(sf::Keyboard::X)) { shutterGlasses.x_offset += 1.0f; shutterGlasses.refresh(); }
+	if (input.isKeyPressed(sf::Keyboard::S)) { shutterGlasses.x_offset -= 1.0f; shutterGlasses.refresh(); }
+	if (input.isKeyPressed(sf::Keyboard::Y)) { shutterGlasses.y_offset += 1.0f; shutterGlasses.refresh(); }
+	if (input.isKeyPressed(sf::Keyboard::A)) { shutterGlasses.y_offset -= 1.0f; shutterGlasses.refresh(); }
+	if (input.isKeyPressed(sf::Keyboard::W)) { shutterGlasses.w_offset += 1.0f; shutterGlasses.refresh(); }
+	if (input.isKeyPressed(sf::Keyboard::Q)) { shutterGlasses.w_offset -= 1.0f; shutterGlasses.refresh(); }
+	*/
 	sharedShutterState.unlock();
 
 	shutterGlasses.toggleEyes( (int)0xffff0000 );
