@@ -21,8 +21,16 @@ The offscreen thread is not bound by vsync and continually renders the scene to 
 The visible context is bound by vsync and has access to these fbos.
 It renders the appropriate eye fbo to the window and toggles the 3dVision's "eye."
 The IR-emitter Init sequence is now borrowed from "libnvstusb" and works really good.
+
 A file named "MonitorTimings.ini" holds the Timing profiles. The program will initially use the top profile. (You may want to change this)
-If you have a 3D-Vision certified Monitor, you can find this timings with NvTimingsEd. The EDID_ID can be found with CRU (Custom Resolution Utility).
+
+If you have a 3D-Vision certified Monitor, you can find this timings with NvTimingsEd (https://github.com/rajkosto/NvTimingsEd) if you know the EDID-ID of your monitor.
+
+The EDID_ID can be found with CRU (Custom Resolution Utility).(https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU)
+
+Some older 3D Vision monitors (my Alienware2310 for example) need to be switched into 3D-mode to avoid ghosting. You can achieve this if you set a custom resolution in the GPU driver or with CRU - with exactly the values shown in NvTimingsEd. The important parameter here is the "total vertical lines", they increase to 1149 on the Aw2310 - triggering it to switch into 3D-mode.
+
+That works with the last 3D Vision monitors too, but for my AsusPG248Q it was just neccessary to enable ULMB (backlight strobing) in the Monitor OSD . There is no difference between 3D-mode and ULMB I think.
 
 ### Dependencies:
 - Visual Studio 2022
