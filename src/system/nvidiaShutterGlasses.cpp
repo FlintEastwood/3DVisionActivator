@@ -53,14 +53,43 @@ string findUsbDevice()
 	SP_DEVICE_INTERFACE_DATA deviceInfoData;
 	deviceInfoData.cbSize = sizeof(SP_DEVINFO_DATA);
 
+	string HardwareIDs[11] = {	"usb#vid_0955&pid_0007",
+								"usb#vid_0955&pid_7001",
+								"usb#vid_0955&pid_7002",
+								"usb#vid_0955&pid_7003",
+								"usb#vid_0955&pid_7004",
+								"usb#vid_0955&pid_7008",
+								"usb#vid_0955&pid_7009",
+								"usb#vid_0955&pid_700A",
+								"usb#vid_0955&pid_700C",
+								"usb#vid_0955&pid_700D&mi_00",
+								"usb#vid_0955&pid_700E&mi_00"
+	};
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { (SHORT)0, (SHORT)25 });
+
 	for (int i = 0; SetupDiEnumDeviceInterfaces(hardwareDeviceInfo, 0, &GUID_DEVINTERFACE_USB_DEVICE, i, &deviceInfoData); ++i)
 	{
 		string usbName = getDeviceName(hardwareDeviceInfo, &deviceInfoData);
+		
+		for (int a = 0; a < (sizeof(HardwareIDs)/sizeof(string)); a++)
+		{ 
+			if (usbName.find(HardwareIDs[a]) != std::string::npos)
+			{
+					SetupDiDestroyDeviceInfoList(hardwareDeviceInfo);
+					cout << "USB Device: " << HardwareIDs[a] << "       \n";
+					//cout << "USB Device: " << usbName << "       \n";
+					return usbName;
+				}
+		}
+		
+		/*
 		if (usbName.find("usb#vid_0955&pid_0007") != string::npos)
 		{
+			cout << "USB Device: " << usbName << "       \n";
 			SetupDiDestroyDeviceInfoList(hardwareDeviceInfo);
 			return usbName;
 		}
+		*/
 	}
 
 	SetupDiDestroyDeviceInfoList(hardwareDeviceInfo);
@@ -267,7 +296,7 @@ void NvidiaShutterGlasses::refresh()
 	// Here start the problems with the sleep mode of the IR emitter !!!
 	// readFromPipe fails after sleep mode
 	readFromPipe(readPipe, readBuffer, 7);
-	writeToPipe(pipe0, sequence+1, 28); // 01 00 18 00,ww ww ww ww,xx xx xx xx,yy yy yy yy,22 24 28 30,04 05 08 0a,zz zz zz zz
+	writeToPipe(pipe0, sequence+1, 28); // 01 00 18 00,ww ww ww ww,xx xx xx xx,yy yy yy yy,30 28 24 22,0a 08 05 04,zz zz zz zz
 	writeToPipe(pipe0, sequence+8, 6);  // 01 1c 02 00,02 00
 	writeToPipe(pipe0, sequence+10, 6); // 01 1e 02 00,timeout
 	writeToPipe(pipe0, sequence+12, 5); // 01 1b 01 00,07
