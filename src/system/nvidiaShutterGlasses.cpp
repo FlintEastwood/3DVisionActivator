@@ -81,7 +81,6 @@ string findUsbDevice()
 					return usbName;
 				}
 		}
-		
 		/*
 		if (usbName.find("usb#vid_0955&pid_0007") != string::npos)
 		{
@@ -261,14 +260,14 @@ void NvidiaShutterGlasses::refresh()
 	//int b = (int)(0.0582808*(rate*rate*rate) - 18.1804*(rate*rate) + 2099.82*(rate) - 101257.0);
 	//int c = (int)(0.3495840*(rate*rate*rate) - 109.060*(rate*rate) + 12597.3*(rate) - 638705.0);
 
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { (SHORT)0, (SHORT)13 });
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { (SHORT)0, (SHORT)15 });
 	cout << "Monitor: " << MonitorID[currentProfile] << "       \n"
 		 << "EDID ID: " << EDID_ID[currentProfile] << "       \n"
 		 << "ScreenRefresh: " << rate << " Hz      \n"
-		 << "x: " << x_us << "us                   " << x << "       \n"
-		 << "y: " << y_us << "us                   " << y << "       \n"
-		 << "z: " << z_us << "us                   " << z << "       \n"
-		 << "w: " << w_us << "us                   " << w << "       \n"
+		 << "x: " << x_us << "us                   \n" //<< x << "       \n"
+		 << "y: " << y_us << "us                   \n" //<< y << "       \n"
+		 << "z: " << z_us << "us                   \n" //<< z << "       \n"
+		 << "w: " << w_us << "us                   \n" //<< w << "       \n"
 		 << "                                        \n"
 		 << "                                        \n";
 	//cout << "a: " << a << "       \n";

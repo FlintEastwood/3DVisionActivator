@@ -10,8 +10,18 @@ using namespace std;
 
 int main()
 {
-	cout << "3D Vision Activator\n";
-	cout << "###################\n";
+	DWORD dwError, dwPriClass;
+
+	if (!SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS))
+	{
+		dwError = GetLastError();
+		cout << "Failed to change process priority (" << dwError << ")\n";
+	} 
+	//cout << "ProcessPrio: " << GetPriorityClass(GetCurrentProcess()) << " \n";
+	
+	cout << "###########################\n"; 
+	cout << "##  3D Vision Activator  ##\n";
+	cout << "###########################\n";
 	cout << "F1 - toggles stereo\n";
 	cout << "F2 - swaps eyes\n";
 	cout << "F3 - next Monitor profile(or loops to the first)\n";
@@ -21,8 +31,8 @@ int main()
 	cout << "Y / A - modifies the y timing\n";
 	cout << "W / Q - modifies the w timing\n";
 	cout << "ESC - Close App\n";
-	cout << "###################\n";
-	//cerr << "Output error\n";
+	cout << "###########################\n";
+	cout << "ProcessPriority: " << GetPriorityClass(GetCurrentProcess()) << " \n";
 
 	return WinMain(GetModuleHandle(NULL), NULL, GetCommandLineA(), SW_SHOWNORMAL);
 }
