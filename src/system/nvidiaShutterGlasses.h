@@ -21,10 +21,9 @@ public:
 	float x_offset;
 	float y_offset;
 	float w_offset;
+	int increment = 100;
 
 private:
-	//void refresh();
-
 	std::vector<std::string> MonitorID;
 	std::vector<std::string> EDID_ID;
 	std::vector<float> validRefreshRates;

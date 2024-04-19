@@ -35,7 +35,7 @@ MainApp::MainApp(const sf::VideoMode& videoMode, const std::string& title)
 
 void MainApp::processEvent(sf::Event event)
 {
-    if (event.type == sf::Event::KeyPressed)			//works only when focus on app
+	if (event.type == sf::Event::KeyPressed)			//works only when focus on app
     {
         if (event.key.code == sf::Keyboard::Escape)
 			exit(0);
@@ -53,12 +53,29 @@ void MainApp::processEvent(sf::Event event)
 		if (event.key.code == sf::Keyboard::F3)
 			shutterGlasses.nextProfile();
 
-		if (event.key.code == sf::Keyboard::X) { shutterGlasses.x_offset += 1.0f; shutterGlasses.refresh(); }
-		if (event.key.code == sf::Keyboard::S) { shutterGlasses.x_offset -= 1.0f; shutterGlasses.refresh(); }
-		if (event.key.code == sf::Keyboard::Y) { shutterGlasses.y_offset += 1.0f; shutterGlasses.refresh(); }
-		if (event.key.code == sf::Keyboard::A) { shutterGlasses.y_offset -= 1.0f; shutterGlasses.refresh(); }
-		if (event.key.code == sf::Keyboard::W) { shutterGlasses.w_offset += 1.0f; shutterGlasses.refresh(); }
-		if (event.key.code == sf::Keyboard::Q) { shutterGlasses.w_offset -= 1.0f; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::I) { 
+			switch (shutterGlasses.increment) {
+			case 1000:
+				shutterGlasses.increment = 100;
+				break;
+			case 100:
+				shutterGlasses.increment = 10;
+				break;
+			case 10:
+				shutterGlasses.increment = 1;
+				break;
+			case 1:
+				shutterGlasses.increment = 1000;
+			}
+			shutterGlasses.refresh();
+		}
+		
+		if (event.key.code == sf::Keyboard::X) { shutterGlasses.x_offset += shutterGlasses.increment ; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::S) { shutterGlasses.x_offset -= shutterGlasses.increment ; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::Y) { shutterGlasses.y_offset += shutterGlasses.increment ; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::A) { shutterGlasses.y_offset -= shutterGlasses.increment ; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::W) { shutterGlasses.w_offset += shutterGlasses.increment ; shutterGlasses.refresh(); }
+		if (event.key.code == sf::Keyboard::Q) { shutterGlasses.w_offset -= shutterGlasses.increment ; shutterGlasses.refresh(); }
 
 		return;
     }
@@ -82,14 +99,7 @@ void MainApp::update(float dt, const sf::Keyboard& input)
 	}
 	if (sharedShutterState.convergence < 0.0f) sharedShutterState.convergence = 0.0f;
 	if (sharedShutterState.separation < 0.0f) sharedShutterState.separation = 0.0f;
-	/*
-	if (input.isKeyPressed(sf::Keyboard::X)) { shutterGlasses.x_offset += 1.0f; shutterGlasses.refresh(); }
-	if (input.isKeyPressed(sf::Keyboard::S)) { shutterGlasses.x_offset -= 1.0f; shutterGlasses.refresh(); }
-	if (input.isKeyPressed(sf::Keyboard::Y)) { shutterGlasses.y_offset += 1.0f; shutterGlasses.refresh(); }
-	if (input.isKeyPressed(sf::Keyboard::A)) { shutterGlasses.y_offset -= 1.0f; shutterGlasses.refresh(); }
-	if (input.isKeyPressed(sf::Keyboard::W)) { shutterGlasses.w_offset += 1.0f; shutterGlasses.refresh(); }
-	if (input.isKeyPressed(sf::Keyboard::Q)) { shutterGlasses.w_offset -= 1.0f; shutterGlasses.refresh(); }
-	*/
+	
 	sharedShutterState.unlock();
 
 	shutterGlasses.toggleEyes( (int)0xffff0000 );

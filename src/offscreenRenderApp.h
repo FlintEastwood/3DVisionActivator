@@ -18,6 +18,7 @@ private:
 	void processEvent(sf::Event event);
 	void update(float dt, const sf::Keyboard& input);
     void render();
+	void resize(int width, int height);
 
 	SharedShutterState& sharedShutterState;
 	ShutterGlasses shutterGlasses;

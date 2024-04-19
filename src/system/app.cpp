@@ -12,7 +12,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 App::App(const sf::VideoMode& videoMode, const std::string& title)
-	: window(videoMode, title, sf::Style::Close)                     //sf::Style::Close
+	: window(videoMode, title, sf::Style::Default)                     //sf::Style::Close
     , fov(45.0f)
     , nearZ(0.1f)
     , farZ(100.0f)
@@ -43,6 +43,7 @@ void App::run()
 
             if (event.type == sf::Event::Resized)
                 resize(event.size.width, event.size.height);
+
 
             processEvent(event);
         }

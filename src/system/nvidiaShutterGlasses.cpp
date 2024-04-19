@@ -223,8 +223,6 @@ NvidiaShutterGlasses::~NvidiaShutterGlasses()
 //refresh variables and initialize usb device
 void NvidiaShutterGlasses::refresh()
 {
-	//int rate = validRefreshRates[currentRefreshRate];
-
 	float rate = validRefreshRates[currentProfile];
 	float x_us = valid_x_us[currentProfile];	//us
 	float y_us = valid_y_us[currentProfile];	//us(activeTime)
@@ -256,10 +254,6 @@ void NvidiaShutterGlasses::refresh()
 	int w = (int)(-w_us *12 + 1); // T2 runs at 12MHz
 	int timeout = (int)(rate * 4); // idle timeout(number of frames)
 
-	//int a = (int)(0.1748910*(rate*rate*rate) - 54.5533*(rate*rate) + 6300.40*(rate) - 319395.0);
-	//int b = (int)(0.0582808*(rate*rate*rate) - 18.1804*(rate*rate) + 2099.82*(rate) - 101257.0);
-	//int c = (int)(0.3495840*(rate*rate*rate) - 109.060*(rate*rate) + 12597.3*(rate) - 638705.0);
-
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { (SHORT)0, (SHORT)15 });
 	cout << "Monitor: " << MonitorID[currentProfile] << "       \n"
 		 << "EDID ID: " << EDID_ID[currentProfile] << "       \n"
@@ -267,20 +261,11 @@ void NvidiaShutterGlasses::refresh()
 		 << "x: " << x_us << "us                   \n" //<< x << "       \n"
 		 << "y: " << y_us << "us                   \n" //<< y << "       \n"
 		 << "z: " << z_us << "us                   \n" //<< z << "       \n"
-		 << "w: " << w_us << "us                   \n" //<< w << "       \n"
+		 << "w: " << w_us << "us                   \n\n" //<< w << "       \n"
+		 << "Timing Increment: " << increment << "us                   \n"
 		 << "                                        \n"
 		 << "                                        \n";
-	//cout << "a: " << a << "       \n";
-	//cout << "b: " << b << "       \n";
-	//cout << "c: " << c << "       \n";
-	/*
-	int sequence[] = {	0x00031842,
-						0x00180001, a, b, 0xfffff830, 0x22302824, 0x040a0805, c,
-						0x00021c01, 0x00000002,	//note only 6 bytes are actually sent here
-						0x00021e01, rate*2,		//note only 6 bytes are actually sent here
-						0x00011b01, 0x00000007,	//note only 5 bytes are actually sent here
-						0x00031840	};
-	*/
+	
 	int sequence[] = {	0x00031842,
 						0x00180001, w, x, y, 0x22242830, 0x0405080a, z,
 						0x00021c01, 0x00000002,	//note only 6 bytes are actually sent here

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="system">
+      <UniqueIdentifier>{532f42d4-c42a-4d67-956b-549f49cc5bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system\headers">
+      <UniqueIdentifier>{d13c53a4-2919-4737-ba0c-d55783cb1651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers">
+      <UniqueIdentifier>{46a7b953-8d4a-433c-ad9b-f18c2ad71877}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\system\app.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system\fbo.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system\nvidiaShutterGlasses.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\mainApp.cpp" />
+    <ClCompile Include="src\offscreenRenderApp.cpp" />
+    <ClCompile Include="src\sharedShutterState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\system\app.h">
+      <Filter>system\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\fbo.h">
+      <Filter>system\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\nvidiaShutterGlasses.h">
+      <Filter>system\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\shutterGlasses.h">
+      <Filter>system\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mainApp.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\offscreenRenderApp.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sharedShutterState.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

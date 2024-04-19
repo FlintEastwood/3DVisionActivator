@@ -20,6 +20,8 @@ OffscreenRenderApp::OffscreenRenderApp(const sf::VideoMode& videoMode, SharedShu
 	window.setVerticalSyncEnabled(false);
 	window.setVisible(false);
 	window.setFramerateLimit(120);
+	resize(videoMode.width, videoMode.height);
+	window.setSize(sf::Vector2u(videoMode.width, videoMode.height));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,3 +101,25 @@ void OffscreenRenderApp::render()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void OffscreenRenderApp::resize(int width, int height)
+{
+	if (height == 0)
+		height = 1;
+
+	glViewport(0, 0, width, height);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	double ymax = nearZ * tan(fov * 4.0 * atan(1.0) / 360.0);	//4.0*atan(1.0) = PI
+	double ymin = -ymax;
+
+	double aspect = (double)width / (double)height;
+	double xmin = ymin * aspect;
+	double xmax = ymax * aspect;
+
+	glFrustum(xmin, xmax, ymin, ymax, nearZ, farZ);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}
