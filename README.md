@@ -11,6 +11,7 @@ Initially made by "cms": https://www.mtbs3d.com/phpbb/viewtopic.php?p=23830#p238
 - X / S - modifies the x timing (Delay from Monitor-Refresh-Start to Shutter open ??)
 - Y / A - modifies the y timing (Shutter open time)
 - W / Q - modifies the w timing (No effect??)
+- I - toggle timing increment (1000/100/10/1)
 - ESC - Close App
 
 ## !!! Don't start the app when IR-emitter is in sleep-mode !!!
